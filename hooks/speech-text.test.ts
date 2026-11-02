@@ -15,7 +15,7 @@ test('flattens markdown into plain sentences', async () => {
 })
 
 test('summarises tables, urls and long paths', async () => {
-  const md = '| a | b |\n|---|---|\n| 1 | 2 |\nOpen https://example.com/x now, in /home/sergi/proj/src/app.ts'
+  const md = '| a | b |\n|---|---|\n| 1 | 2 |\nOpen https://example.com/x now, in /home/user/proj/src/app.ts'
   expect(toSpeech(md, 1000)).toBe(`${cue('Check the table on screen.')} Open a link now, in app.ts.`)
 })
 

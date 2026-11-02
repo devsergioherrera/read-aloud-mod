@@ -1,3 +1,14 @@
 node_modules/
 .DS_Store
 *.log
+
+# Never upload personal or machine-local files
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+.env
+.env.*
+.tmp-*
+__pycache__/
+*.pyc
+.venv/
