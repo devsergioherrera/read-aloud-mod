@@ -105,70 +105,105 @@ async function toggle($: EngineInterface) {
   await setOn($, !value)
 }
 
-// One handler per subcommand of commands.ts; each answers with the text to print.
-type Handler = ($: EngineInterface, arg: string, options: Options) => Promise<string>
+// One function per subcommand of commands.ts; each answers with the text to print.
+async function runOn($: EngineInterface) {
+  await setOn($, true)
+  return 'Read-aloud is on.'
+}
 
-const HANDLERS: Record<string, Handler> = {
-  on: async $ => (await setOn($, true), 'Read-aloud is on.'),
-  off: async $ => (await setOn($, false), 'Read-aloud is off.'),
-  toggle: async $ => (await toggle($), 'Read-aloud toggled.'),
-  stop: async $ => (await stop($), 'Stopped.'),
-  help: async () => helpText(),
+async function runOff($: EngineInterface) {
+  await setOn($, false)
+  return 'Read-aloud is off.'
+}
 
-  now: async ($, _arg, options) => {
-    const { value = '' } = await $.state.get(last)
-    if (value === '') {
-      return 'No answer to read yet.'
-    }
-    await speak($, value, options)
-    return 'Reading the last answer.'
-  },
+async function runToggle($: EngineInterface) {
+  await toggle($)
+  return 'Read-aloud toggled.'
+}
 
-  voice: async ($, name, options) => {
-    if (name === '') {
-      const saved = await $.store.get('voice')
-      return `Voice: ${typeof saved === 'string' ? saved : String(options.voice ?? 'am_michael')}. Use /${COMMAND} voice male, female, or a Kokoro name.`
-    }
-    await $.store.set('voice', name)
-    await speak($, `Hi, this is the ${name} voice.`, options)
-    return `Voice set to ${PRESETS[name] ?? name}.`
-  },
+async function runStop($: EngineInterface) {
+  await stop($)
+  return 'Stopped.'
+}
 
-  speed: async ($, arg, options) => {
-    const savedSpeed = await $.store.get('speed')
-    const currentSpeed = typeof savedSpeed === 'number' ? savedSpeed : Number(options.speed ?? 1.3)
-    if (arg === '') {
-      return `Speed: ${currentSpeed}. Use /${COMMAND} speed faster, slower, or a number from ${SPEED_MIN} to ${SPEED_MAX}.`
-    }
+async function runNow($: EngineInterface, options: Options) {
+  const { value = '' } = await $.state.get(last)
+  if (value === '') {
+    return 'No answer to read yet.'
+  }
+  await speak($, value, options)
+  return 'Reading the last answer.'
+}
 
-    const requested = arg === 'faster' ? currentSpeed + 0.1 : arg === 'slower' ? currentSpeed - 0.1 : Number(arg)
-    if (Number.isNaN(requested)) {
-      return 'Speed must be faster, slower, or a number like 1.3.'
-    }
+async function runVoice($: EngineInterface, name: string, options: Options) {
+  if (name === '') {
+    const saved = await $.store.get('voice')
+    return `Voice: ${typeof saved === 'string' ? saved : String(options.voice ?? 'am_michael')}. Use /${COMMAND} voice male, female, or a Kokoro name.`
+  }
+  await $.store.set('voice', name)
+  await speak($, `Hi, this is the ${name} voice.`, options)
+  return `Voice set to ${PRESETS[name] ?? name}.`
+}
 
-    const speed = Math.round(Math.min(SPEED_MAX, Math.max(SPEED_MIN, requested)) * 100) / 100
-    await $.store.set('speed', speed)
-    await speak($, 'This is the new speaking speed.', options)
-    return `Speed set to ${speed}.`
-  },
+async function runSpeed($: EngineInterface, arg: string, options: Options) {
+  const savedSpeed = await $.store.get('speed')
+  const currentSpeed = typeof savedSpeed === 'number' ? savedSpeed : Number(options.speed ?? 1.3)
+  if (arg === '') {
+    return `Speed: ${currentSpeed}. Use /${COMMAND} speed faster, slower, or a number from ${SPEED_MIN} to ${SPEED_MAX}.`
+  }
 
-  status: async $ => {
-    const check = await $.process.run(
-      isWindows ? powershell($.plugin.root, 'check.ps1') : ['bash', `${$.plugin.root}/scripts/speak.sh`, '--check'],
-    )
-    const { value = false } = await $.state.get(isOnRef)
-    return `Read-aloud is ${value ? 'on' : 'off'}. ${check.stdout.trim()}`
-  },
+  const requested = arg === 'faster' ? currentSpeed + 0.1 : arg === 'slower' ? currentSpeed - 0.1 : Number(arg)
+  if (Number.isNaN(requested)) {
+    return 'Speed must be faster, slower, or a number like 1.3.'
+  }
 
-  setup: async $ => {
-    $.ui.toast('Installing the Kokoro voice, this takes a minute...')
-    const ran = await $.process.run(
-      isWindows ? powershell($.plugin.root, 'setup.ps1') : ['bash', `${$.plugin.root}/scripts/setup.sh`],
-      { timeoutMs: 600_000 },
-    )
-    const tail = (ran.exitCode === 0 ? ran.stdout : ran.stderr || ran.stdout).trim().split('\n').slice(-3).join('\n')
-    return ran.exitCode === 0 ? tail : `Setup failed:\n${tail}`
-  },
+  const speed = Math.round(Math.min(SPEED_MAX, Math.max(SPEED_MIN, requested)) * 100) / 100
+  await $.store.set('speed', speed)
+  await speak($, 'This is the new speaking speed.', options)
+  return `Speed set to ${speed}.`
+}
+
+async function runStatus($: EngineInterface) {
+  const check = await $.process.run(
+    isWindows ? powershell($.plugin.root, 'check.ps1') : ['bash', `${$.plugin.root}/scripts/speak.sh`, '--check'],
+  )
+  const { value = false } = await $.state.get(isOnRef)
+  return `Read-aloud is ${value ? 'on' : 'off'}. ${check.stdout.trim()}`
+}
+
+async function runSetup($: EngineInterface) {
+  $.ui.toast('Installing the Kokoro voice, this takes a minute...')
+  const ran = await $.process.run(
+    isWindows ? powershell($.plugin.root, 'setup.ps1') : ['bash', `${$.plugin.root}/scripts/setup.sh`],
+    { timeoutMs: 600_000 },
+  )
+  const tail = (ran.exitCode === 0 ? ran.stdout : ran.stderr || ran.stdout).trim().split('\n').slice(-3).join('\n')
+  return ran.exitCode === 0 ? tail : `Setup failed:\n${tail}`
+}
+
+async function runCommand($: EngineInterface, name: string, arg: string, options: Options) {
+  switch (name) {
+    case 'on':
+      return runOn($)
+    case 'off':
+      return runOff($)
+    case 'toggle':
+      return runToggle($)
+    case 'stop':
+      return runStop($)
+    case 'now':
+      return runNow($, options)
+    case 'voice':
+      return runVoice($, arg, options)
+    case 'speed':
+      return runSpeed($, arg, options)
+    case 'status':
+      return runStatus($)
+    case 'setup':
+      return runSetup($)
+    default:
+      return helpText()
+  }
 }
 
 export const register: Register = (on, options) => {
@@ -231,8 +266,7 @@ export const register: Register = (on, options) => {
 
   on('command.run', { command: COMMAND }, async ($, e) => {
     const [name = '', ...rest] = e.args.trim().toLowerCase().split(/\s+/)
-    const handler = HANDLERS[name]
-    return { text: handler ? await handler($, rest.join(' '), options) : helpText() }
+    return { text: await runCommand($, name, rest.join(' '), options) }
   })
 
   on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
