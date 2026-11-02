@@ -30,7 +30,7 @@ test('help lists every subcommand and the hotkeys', async () => {
 })
 
 test('the dim hint names every subcommand', async () => {
-  expect(argumentHint()).toBe('[on|off|toggle|now|stop|voice|speed|status|setup|help]')
+  expect(argumentHint()).toBe('[on|off|toggle|now|stop|voice|speed|lang|status|setup|help]')
 })
 
 test('typing a letter after the command offers the matching subcommands', async () => {

@@ -1,6 +1,8 @@
 // The one place that describes /read-aloud: its help text, its dim argument hint
 // and its typeahead rows all come from this table, so they can never disagree.
 
+import { allVoices } from './languages'
+
 export const COMMAND = 'read-aloud'
 
 export type Subcommand = {
@@ -23,8 +25,8 @@ export const SUBCOMMANDS: readonly Subcommand[] = [
   {
     name: 'voice',
     usage: 'voice <male|female|name>',
-    summary: 'Change the voice',
-    values: ['male', 'female', 'am_michael', 'am_fenrir', 'af_heart', 'af_bella'],
+    summary: 'Change the voice (English and Spanish voices)',
+    values: ['male', 'female', ...allVoices()],
   },
   {
     name: 'speed',
@@ -32,8 +34,19 @@ export const SUBCOMMANDS: readonly Subcommand[] = [
     summary: 'Change the speaking speed',
     values: ['faster', 'slower', '1', '1.3', '1.5'],
   },
+  {
+    name: 'lang',
+    usage: 'lang <en|es|auto>',
+    summary: 'Speak English, Spanish, or follow each answer',
+    values: ['en', 'es', 'auto'],
+  },
   { name: 'status', summary: 'Show which voice engine is in use' },
-  { name: 'setup', summary: 'Install the Kokoro voice (one time, about 120 MB)' },
+  {
+    name: 'setup',
+    usage: 'setup [en|es|both]',
+    summary: 'Guided install of the Kokoro voice (about 120 MB, once)',
+    values: ['en', 'es', 'both', 'cancel'],
+  },
   { name: 'help', summary: 'Show this list' },
 ]
 

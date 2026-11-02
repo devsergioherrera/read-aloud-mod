@@ -44,7 +44,9 @@
 /read-aloud setup
 ```
 
-`/read-aloud setup` downloads the voice once (about 120 MB). It needs [`uv`](https://docs.astral.sh/uv/getting-started/installation/). Read-aloud is **off** until you switch it on.
+`/read-aloud setup` opens a short guide above the prompt. It asks what you want (English, Spanish, or both), checks that [`uv`](https://docs.astral.sh/uv/getting-started/installation/) and an audio player are there and tells you the exact fix if not, lets you pick a voice, installs it once (about 120 MB), and plays a sample so you can say yes or change it. Read-aloud is **off** until you finish the guide or switch it on.
+
+Prefer no guide? `/read-aloud setup en`, `es` or `both` installs straight away.
 
 | Platform | Also needs | Status |
 | :-- | :-- | :-- |
@@ -64,6 +66,18 @@ Press <kbd>ctrl</kbd> + <kbd>x</kbd>, then <kbd>Tab</kbd>, then one key. The row
 | <kbd>l</kbd> | Slower | `/read-aloud speed slower` |
 
 Type `/read-aloud` followed by a space to see every option as you type, or run `/read-aloud help` for the full list. Typing in the prompt never interrupts the voice. Sending a new prompt does.
+
+## English and Spanish
+
+Two languages, each with its own voices. The spoken cues ("look at the code on screen") follow the language too.
+
+| Language | Voices | Set with |
+| :-- | :-- | :-- |
+| English | `am_michael`, `am_fenrir`, `am_puck` · `af_heart`, `af_bella`, `af_nicole` | `/read-aloud lang en` |
+| Español | `em_alex`, `em_santa` · `ef_dora` | `/read-aloud lang es` |
+| Both | the voice follows each answer | `/read-aloud lang auto` |
+
+`auto` reads each answer's words to decide the language, a simple guess that defaults to English. Pick a voice with `/read-aloud voice ef_dora`, or `male` / `female` for the current language.
 
 <details>
 <summary><b>Voice, speed and length</b></summary>
@@ -99,6 +113,7 @@ A hook waits for each finished answer, turns the markdown into plain sentences, 
 
 - [x] Ubuntu / Linux
 - [x] Hotkeys and a typeahead menu for every option
+- [x] Guided setup, English and Spanish voices
 - [ ] Windows, tested on a real machine
 - [ ] Hands-free control: stop and repeat from a headset button
 - [ ] More languages
