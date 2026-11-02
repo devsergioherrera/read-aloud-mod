@@ -55,3 +55,25 @@ for (const { step, text, control } of STEPS) {
     await ui.unmount()
   })
 }
+
+// The hotkeys reach these handlers through the engine; this proves the handlers do their job and answer.
+test('pressing stop clears the talking flag and says so', async ($, on) => {
+  const writes: { key: string; value: unknown }[] = []
+  const toasts: string[] = []
+  on('state.get', () => ({ value: { value: false, version: 1 } }))
+  on('state.set', (_, e) => {
+    writes.push(e)
+    return { value: { version: 2 } }
+  })
+  on('ui.toast', (_, e) => {
+    toasts.push(e.text)
+    return { value: {} }
+  })
+
+  const ui = await $.ui.mount({ plugin: 'read-aloud', component: 'AbovePrompt', props: { hasSurvey: false }, surface: 'terminal' })
+  await ui.press({ key: 'stop' })
+
+  expect(writes).toContainEqual({ plugin: 'read-aloud', key: 'isTalking', value: false })
+  expect(toasts).toEqual(['Nothing is playing.'])
+  await ui.unmount()
+})

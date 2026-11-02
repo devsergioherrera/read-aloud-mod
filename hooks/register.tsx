@@ -151,6 +151,21 @@ async function toggle($: EngineInterface) {
   await setOn($, !value)
 }
 
+// What the hotkeys run: each one answers with a toast, so a key that did nothing is never silent.
+async function stopNow($: EngineInterface) {
+  const { value: isSpeaking = false } = await $.state.get(talkingRef)
+  await stop($)
+  $.ui.toast(isSpeaking ? 'Stopped.' : 'Nothing is playing.')
+}
+
+async function repeatNow($: EngineInterface, options: Options) {
+  $.ui.toast(await runNow($, options))
+}
+
+async function changeSpeed($: EngineInterface, direction: 'faster' | 'slower', options: Options) {
+  $.ui.toast(await runSpeed($, direction, options))
+}
+
 // --- Guided setup ---------------------------------------------------------------------------
 // The steps and their transitions are pure (wizard.ts); these functions run the effects and store the result.
 
@@ -562,13 +577,13 @@ export const register: Register = (on, options) => {
         <Text dimColor>{isActive ? 'Read aloud: on' : 'Read aloud: off'}{isSpeaking ? ' (talking)' : ''}  </Text>
         <Button plain key="toggle" label="on/off" hotkey="m" onPress={() => toggle($)} />
         <Text dimColor>  </Text>
-        <Button plain key="stop" label="stop" hotkey="s" onPress={() => stop($)} />
+        <Button plain key="stop" label="stop" hotkey="s" onPress={() => stopNow($)} />
         <Text dimColor>  </Text>
-        <Button plain key="repeat" label="repeat" hotkey="r" onPress={() => runNow($, options)} />
+        <Button plain key="repeat" label="repeat" hotkey="r" onPress={() => repeatNow($, options)} />
         <Text dimColor>  </Text>
-        <Button plain key="faster" label="faster" hotkey="f" onPress={() => runSpeed($, 'faster', options)} />
+        <Button plain key="faster" label="faster" hotkey="f" onPress={() => changeSpeed($, 'faster', options)} />
         <Text dimColor>  </Text>
-        <Button plain key="slower" label="slower" hotkey="l" onPress={() => runSpeed($, 'slower', options)} />
+        <Button plain key="slower" label="slower" hotkey="l" onPress={() => changeSpeed($, 'slower', options)} />
       </Box>
     )
   })
