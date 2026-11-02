@@ -24,6 +24,10 @@
 </p>
 
 <p align="center">
+
+https://github.com/user-attachments/assets/d30c05c9-e1e1-4f54-b25f-272cd7706135
+
+
   <a href="assets/demo.mp4"><img alt="Watch the 15-second demo, with sound" src="https://img.shields.io/badge/%E2%96%B6_Watch_the_demo-15_s_%C2%B7_with_sound-8B5CF6?style=for-the-badge&labelColor=0D0B14"></a>
 </p>
 
