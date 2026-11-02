@@ -34,7 +34,7 @@ function stop() {
 
 async function speak($: EngineInterface, answer: string, options: Options) {
   stop()
-  const text = toSpeech(answer, Number(options.maxChars ?? 1200))
+  const text = toSpeech(answer, Number(options.maxChars ?? 20000))
   if (text === '') {
     return
   }

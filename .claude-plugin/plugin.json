@@ -36,7 +36,7 @@
       "type": "number",
       "title": "Max characters",
       "description": "Longer answers are cut at a sentence boundary before being spoken.",
-      "default": 1200
+      "default": 20000
     },
     "spokenWords": {
       "type": "number",

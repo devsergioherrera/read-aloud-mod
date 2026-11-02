@@ -1,24 +1,42 @@
-# read-aloud
+# read-aloud-mod
 
-A Claude Code mod that reads Claude's answers aloud with a local, offline Kokoro voice.
-Off by default. Code blocks and tables are not read: you hear "Take a look at the code on screen."
+**Stop reading. Start listening.** Claude Code answers, spoken by a local, offline voice.
+
+Off by default. Nothing leaves your machine.
 
 ## Install
 
 ```
-/plugin marketplace add <owner>/<repo>
+/plugin marketplace add devsergioherrera/read-aloud-mod
 /plugin install read-aloud@read-aloud
 /read-aloud setup
 ```
 
-`/read-aloud setup` installs the voice once (about 120 MB, needs `uv` and an audio player: paplay, aplay or ffplay).
-For a local checkout, use its path instead of `<owner>/<repo>`.
+`/read-aloud setup` installs the voice once (about 120 MB). It needs `uv` and an audio player: `paplay`, `aplay`, or `ffplay`.
 
 ## Use
 
-- Toggle: **ctrl+x, Tab, then m** (the `Speak` row above the prompt), or `/read-aloud on|off|toggle`.
-- `/read-aloud now` reads the last answer, `/read-aloud stop` stops, `/read-aloud status` shows the engine.
-- `/read-aloud voice male|female|<kokoro name>` changes the voice live (defaults: `am_michael`, `af_heart`).
-- While on, Claude is asked to keep answers under 100 words (`spokenWords` in the config menu).
-- `/read-aloud speed faster|slower|1.3` changes the speed live (default 1.3).
-- Voice, speed, language and length limit are also in the plugin's config menu.
+| Action | How |
+| --- | --- |
+| Turn on or off | `ctrl+x`, `Tab`, `m`, or `/read-aloud on \| off \| toggle` |
+| Read the last answer | `/read-aloud now` |
+| Stop talking | `/read-aloud stop` |
+| Check the engine | `/read-aloud status` |
+
+## Settings
+
+| Setting | Command | Default |
+| --- | --- | --- |
+| Voice | `/read-aloud voice male \| female \| <name>` | `am_michael` / `af_heart` |
+| Speed | `/read-aloud speed faster \| slower \| 1.3` | `1.3` |
+| Answer length | Config menu, `spokenWords` | 100 words |
+
+Code blocks and tables are not read aloud. You hear a short cue instead.
+
+## Privacy
+
+The voice runs locally with Kokoro. No audio or text is sent to a cloud service.
+
+## License
+
+To be decided.
