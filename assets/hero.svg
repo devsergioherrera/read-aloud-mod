@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="380" viewBox="0 0 1100 380" role="img" aria-labelledby="t d">
+<title id="t">read-aloud-mod</title>
+<desc id="d">Claude Code answers in English and in Spanish, each sentence lighting up as it is spoken, with a moving waveform under each language.</desc>
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.tag{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;font-weight:600;letter-spacing:.08em}.cap{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;fill:#8E8AA8}.line{font-size:25px;fill:#6B6785}@keyframes bar{from{transform:scaleY(.25)}to{transform:scaleY(1)}}.b{transform-box:fill-box;transform-origin:center;animation:bar .9s ease-in-out infinite alternate}@keyframes en0{0.0%,32.3%{fill:#F5A524}33.3%,100%{fill:#6B6785}}.en0{animation:en0 9s linear infinite}@keyframes en1{0%,33.2%{fill:#6B6785}33.3%,65.7%{fill:#F5A524}66.7%,100%{fill:#6B6785}}.en1{animation:en1 9s linear infinite}@keyframes en2{0%,66.6%{fill:#6B6785}66.7%,99.0%{fill:#F5A524}100.0%,100%{fill:#6B6785}}.en2{animation:en2 9s linear infinite}@keyframes es0{0.0%,32.3%{fill:#A78BFA}33.3%,100%{fill:#6B6785}}.es0{animation:es0 9s linear infinite}@keyframes es1{0%,33.2%{fill:#6B6785}33.3%,65.7%{fill:#A78BFA}66.7%,100%{fill:#6B6785}}.es1{animation:es1 9s linear infinite}@keyframes es2{0%,66.6%{fill:#6B6785}66.7%,99.0%{fill:#A78BFA}100.0%,100%{fill:#6B6785}}.es2{animation:es2 9s linear infinite}</style>
+<defs><linearGradient id="ga" x1="0" x2="1"><stop offset="0" stop-color="#F5A524"/><stop offset="1" stop-color="#FB923C"/></linearGradient><linearGradient id="gv" x1="0" x2="1"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
+<rect x="1" y="1" width="1098" height="378" rx="20" fill="#0D0B14" stroke="#2A2540" stroke-width="2"/>
+<line x1="550.0" y1="48" x2="550.0" y2="310" stroke="#2A2540" stroke-width="2"/>
+<circle cx="75" cy="64" r="5" fill="#F5A524"/>
+<text class="tag" x="90" y="70" fill="#F5A524">EN · am_michael</text>
+<text class="line en0" x="70" y="135">Your tests pass.</text>
+<text class="line en1" x="70" y="181">The bug was in the cache.</text>
+<text class="line en2" x="70" y="227">Ship it.</text>
+<rect class="b" x="70" y="298.0" width="6" height="12.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.00s;animation-duration:0.70s"/>
+<rect class="b" x="86" y="292.3" width="6" height="17.7" rx="3.5" fill="url(#ga)" style="animation-delay:-0.37s;animation-duration:0.82s"/>
+<rect class="b" x="102" y="289.0" width="6" height="21.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.74s;animation-duration:0.94s"/>
+<rect class="b" x="118" y="283.3" width="6" height="26.7" rx="3.5" fill="url(#ga)" style="animation-delay:-0.21s;animation-duration:1.06s"/>
+<rect class="b" x="134" y="276.7" width="6" height="33.3" rx="3.5" fill="url(#ga)" style="animation-delay:-0.58s;animation-duration:1.18s"/>
+<rect class="b" x="150" y="280.2" width="6" height="29.8" rx="3.5" fill="url(#ga)" style="animation-delay:-0.05s;animation-duration:0.70s"/>
+<rect class="b" x="166" y="265.9" width="6" height="44.1" rx="3.5" fill="url(#ga)" style="animation-delay:-0.42s;animation-duration:0.82s"/>
+<rect class="b" x="182" y="272.8" width="6" height="37.2" rx="3.5" fill="url(#ga)" style="animation-delay:-0.79s;animation-duration:0.94s"/>
+<rect class="b" x="198" y="261.0" width="6" height="49.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.26s;animation-duration:1.06s"/>
+<rect class="b" x="214" y="259.3" width="6" height="50.7" rx="3.5" fill="url(#ga)" style="animation-delay:-0.63s;animation-duration:1.18s"/>
+<rect class="b" x="230" y="264.1" width="6" height="45.9" rx="3.5" fill="url(#ga)" style="animation-delay:-0.10s;animation-duration:0.70s"/>
+<rect class="b" x="246" y="250.4" width="6" height="59.6" rx="3.5" fill="url(#ga)" style="animation-delay:-0.47s;animation-duration:0.82s"/>
+<rect class="b" x="262" y="268.5" width="6" height="41.5" rx="3.5" fill="url(#ga)" style="animation-delay:-0.84s;animation-duration:0.94s"/>
+<rect class="b" x="278" y="249.7" width="6" height="60.3" rx="3.5" fill="url(#ga)" style="animation-delay:-0.31s;animation-duration:1.06s"/>
+<rect class="b" x="294" y="257.0" width="6" height="53.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.68s;animation-duration:1.18s"/>
+<rect class="b" x="310" y="257.5" width="6" height="52.5" rx="3.5" fill="url(#ga)" style="animation-delay:-0.15s;animation-duration:0.70s"/>
+<rect class="b" x="326" y="251.6" width="6" height="58.4" rx="3.5" fill="url(#ga)" style="animation-delay:-0.52s;animation-duration:0.82s"/>
+<rect class="b" x="342" y="270.5" width="6" height="39.5" rx="3.5" fill="url(#ga)" style="animation-delay:-0.89s;animation-duration:0.94s"/>
+<rect class="b" x="358" y="255.0" width="6" height="55.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.36s;animation-duration:1.06s"/>
+<rect class="b" x="374" y="268.4" width="6" height="41.6" rx="3.5" fill="url(#ga)" style="animation-delay:-0.73s;animation-duration:1.18s"/>
+<rect class="b" x="390" y="265.5" width="6" height="44.5" rx="3.5" fill="url(#ga)" style="animation-delay:-0.20s;animation-duration:0.70s"/>
+<rect class="b" x="406" y="268.4" width="6" height="41.6" rx="3.5" fill="url(#ga)" style="animation-delay:-0.57s;animation-duration:0.82s"/>
+<rect class="b" x="422" y="278.9" width="6" height="31.1" rx="3.5" fill="url(#ga)" style="animation-delay:-0.04s;animation-duration:0.94s"/>
+<rect class="b" x="438" y="275.6" width="6" height="34.4" rx="3.5" fill="url(#ga)" style="animation-delay:-0.41s;animation-duration:1.06s"/>
+<rect class="b" x="454" y="286.9" width="6" height="23.1" rx="3.5" fill="url(#ga)" style="animation-delay:-0.78s;animation-duration:1.18s"/>
+<rect class="b" x="470" y="287.1" width="6" height="22.9" rx="3.5" fill="url(#ga)" style="animation-delay:-0.25s;animation-duration:0.70s"/>
+<rect class="b" x="486" y="293.0" width="6" height="17.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.62s;animation-duration:0.82s"/>
+<rect class="b" x="502" y="298.0" width="6" height="12.0" rx="3.5" fill="url(#ga)" style="animation-delay:-0.09s;animation-duration:0.94s"/>
+<circle cx="615" cy="64" r="5" fill="#A78BFA"/>
+<text class="tag" x="630" y="70" fill="#A78BFA">ES · ef_dora</text>
+<text class="line es0" x="610" y="135">Las pruebas pasan.</text>
+<text class="line es1" x="610" y="181">El error estaba en la caché.</text>
+<text class="line es2" x="610" y="227">Envíalo.</text>
+<rect class="b" x="610" y="298.0" width="6" height="12.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.00s;animation-duration:0.70s"/>
+<rect class="b" x="626" y="292.3" width="6" height="17.7" rx="3.5" fill="url(#gv)" style="animation-delay:-0.37s;animation-duration:0.82s"/>
+<rect class="b" x="642" y="289.0" width="6" height="21.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.74s;animation-duration:0.94s"/>
+<rect class="b" x="658" y="283.3" width="6" height="26.7" rx="3.5" fill="url(#gv)" style="animation-delay:-0.21s;animation-duration:1.06s"/>
+<rect class="b" x="674" y="276.7" width="6" height="33.3" rx="3.5" fill="url(#gv)" style="animation-delay:-0.58s;animation-duration:1.18s"/>
+<rect class="b" x="690" y="280.2" width="6" height="29.8" rx="3.5" fill="url(#gv)" style="animation-delay:-0.05s;animation-duration:0.70s"/>
+<rect class="b" x="706" y="265.9" width="6" height="44.1" rx="3.5" fill="url(#gv)" style="animation-delay:-0.42s;animation-duration:0.82s"/>
+<rect class="b" x="722" y="272.8" width="6" height="37.2" rx="3.5" fill="url(#gv)" style="animation-delay:-0.79s;animation-duration:0.94s"/>
+<rect class="b" x="738" y="261.0" width="6" height="49.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.26s;animation-duration:1.06s"/>
+<rect class="b" x="754" y="259.3" width="6" height="50.7" rx="3.5" fill="url(#gv)" style="animation-delay:-0.63s;animation-duration:1.18s"/>
+<rect class="b" x="770" y="264.1" width="6" height="45.9" rx="3.5" fill="url(#gv)" style="animation-delay:-0.10s;animation-duration:0.70s"/>
+<rect class="b" x="786" y="250.4" width="6" height="59.6" rx="3.5" fill="url(#gv)" style="animation-delay:-0.47s;animation-duration:0.82s"/>
+<rect class="b" x="802" y="268.5" width="6" height="41.5" rx="3.5" fill="url(#gv)" style="animation-delay:-0.84s;animation-duration:0.94s"/>
+<rect class="b" x="818" y="249.7" width="6" height="60.3" rx="3.5" fill="url(#gv)" style="animation-delay:-0.31s;animation-duration:1.06s"/>
+<rect class="b" x="834" y="257.0" width="6" height="53.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.68s;animation-duration:1.18s"/>
+<rect class="b" x="850" y="257.5" width="6" height="52.5" rx="3.5" fill="url(#gv)" style="animation-delay:-0.15s;animation-duration:0.70s"/>
+<rect class="b" x="866" y="251.6" width="6" height="58.4" rx="3.5" fill="url(#gv)" style="animation-delay:-0.52s;animation-duration:0.82s"/>
+<rect class="b" x="882" y="270.5" width="6" height="39.5" rx="3.5" fill="url(#gv)" style="animation-delay:-0.89s;animation-duration:0.94s"/>
+<rect class="b" x="898" y="255.0" width="6" height="55.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.36s;animation-duration:1.06s"/>
+<rect class="b" x="914" y="268.4" width="6" height="41.6" rx="3.5" fill="url(#gv)" style="animation-delay:-0.73s;animation-duration:1.18s"/>
+<rect class="b" x="930" y="265.5" width="6" height="44.5" rx="3.5" fill="url(#gv)" style="animation-delay:-0.20s;animation-duration:0.70s"/>
+<rect class="b" x="946" y="268.4" width="6" height="41.6" rx="3.5" fill="url(#gv)" style="animation-delay:-0.57s;animation-duration:0.82s"/>
+<rect class="b" x="962" y="278.9" width="6" height="31.1" rx="3.5" fill="url(#gv)" style="animation-delay:-0.04s;animation-duration:0.94s"/>
+<rect class="b" x="978" y="275.6" width="6" height="34.4" rx="3.5" fill="url(#gv)" style="animation-delay:-0.41s;animation-duration:1.06s"/>
+<rect class="b" x="994" y="286.9" width="6" height="23.1" rx="3.5" fill="url(#gv)" style="animation-delay:-0.78s;animation-duration:1.18s"/>
+<rect class="b" x="1010" y="287.1" width="6" height="22.9" rx="3.5" fill="url(#gv)" style="animation-delay:-0.25s;animation-duration:0.70s"/>
+<rect class="b" x="1026" y="293.0" width="6" height="17.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.62s;animation-duration:0.82s"/>
+<rect class="b" x="1042" y="298.0" width="6" height="12.0" rx="3.5" fill="url(#gv)" style="animation-delay:-0.09s;animation-duration:0.94s"/>
+<text class="cap" x="550.0" y="352" text-anchor="middle">Claude Code answers, spoken by a voice on your own machine.</text>
+</svg>

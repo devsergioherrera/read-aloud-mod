@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.png" alt="A glowing audio ripple spreading from a terminal" width="100%">
+  <img src="assets/hero.svg" alt="The same answer in English and Spanish: each sentence lights up as it is spoken, with a moving waveform under each language" width="100%">
 </p>
 
 <h1 align="center">read-aloud-mod</h1>
