@@ -1,6 +1,25 @@
 import { expect, test } from 'claude-code/testing'
 
-import { SUBCOMMANDS, argumentHint, helpText, suggest } from './commands'
+import { HOTKEYS, SUBCOMMANDS, argumentHint, helpText, suggest } from './commands'
+
+// Claude Code's own keys inside the focused row above the prompt (abovePrompt:*), plus ctrl+s.
+const RESERVED = ['tab', 'enter', 'space', 'escape', 'up', 'down', 'left', 'right']
+
+test('hotkeys are single unique letters that clash with nothing reserved', async () => {
+  const keys = HOTKEYS.map(hotkey => hotkey.key)
+  expect(new Set(keys).size).toBe(keys.length)
+  for (const key of keys) {
+    expect(key).toMatch(/^[a-z]$/)
+    expect(RESERVED).not.toContain(key)
+  }
+})
+
+test('help lists every hotkey', async () => {
+  const help = helpText()
+  for (const hotkey of HOTKEYS) {
+    expect(help).toContain(`${hotkey.key} ${hotkey.label}`)
+  }
+})
 
 test('help lists every subcommand and the hotkeys', async () => {
   const help = helpText()

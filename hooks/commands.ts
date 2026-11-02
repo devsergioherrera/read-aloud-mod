@@ -37,7 +37,19 @@ export const SUBCOMMANDS: readonly Subcommand[] = [
   { name: 'help', summary: 'Show this list' },
 ]
 
-const HOTKEYS = 'Hotkeys: ctrl+x, Tab, then  m  to switch on or off,  s  to stop talking.'
+// Pressed after `ctrl+x Tab`. One key each, drawn in the row above the prompt as `key: label`.
+// Letters only: ctrl+s is Claude Code's draft stash, and the row's own keys are Tab, Enter, Space, Esc.
+export type Hotkey = { readonly key: string; readonly label: string }
+
+export const HOTKEYS: readonly Hotkey[] = [
+  { key: 'm', label: 'on/off' },
+  { key: 's', label: 'stop' },
+  { key: 'r', label: 'repeat' },
+  { key: 'f', label: 'faster' },
+  { key: 'l', label: 'slower' },
+]
+
+const hotkeysText = () => `Hotkeys: ctrl+x, Tab, then ${HOTKEYS.map(hotkey => `${hotkey.key} ${hotkey.label}`).join(', ')}.`
 
 const usageOf = (sub: Subcommand) => sub.usage ?? sub.name
 
@@ -46,7 +58,7 @@ export const argumentHint = (): string => `[${SUBCOMMANDS.map(sub => sub.name).j
 export const helpText = (): string => {
   const width = Math.max(...SUBCOMMANDS.map(sub => usageOf(sub).length))
   const rows = SUBCOMMANDS.map(sub => `  /${COMMAND} ${usageOf(sub).padEnd(width)}   ${sub.summary}`)
-  return [`Read answers aloud:`, ...rows, '', HOTKEYS].join('\n')
+  return [`Read answers aloud:`, ...rows, '', hotkeysText()].join('\n')
 }
 
 const startsWith = (prefix: string) => (word: string) => word.startsWith(prefix.toLowerCase())

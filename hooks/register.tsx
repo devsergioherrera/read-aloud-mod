@@ -280,10 +280,16 @@ export const register: Register = (on, options) => {
 
     return (
       <Box>
-        <Text dimColor>{isActive ? 'Read aloud: on ' : 'Read aloud: off '}</Text>
-        <Button key="toggle" label={isActive ? 'Turn off' : 'Turn on'} hotkey="m" onPress={() => toggle($)} />
-        <Text dimColor>{isSpeaking ? ' ' : ''}</Text>
-        <Button key="stop" label={isSpeaking ? 'Stop talking' : 'Stop'} hotkey="s" onPress={() => stop($)} />
+        <Text dimColor>{isActive ? 'Read aloud: on' : 'Read aloud: off'}{isSpeaking ? ' (talking)' : ''}  </Text>
+        <Button plain key="toggle" label="on/off" hotkey="m" onPress={() => toggle($)} />
+        <Text dimColor>  </Text>
+        <Button plain key="stop" label="stop" hotkey="s" onPress={() => stop($)} />
+        <Text dimColor>  </Text>
+        <Button plain key="repeat" label="repeat" hotkey="r" onPress={() => runNow($, options)} />
+        <Text dimColor>  </Text>
+        <Button plain key="faster" label="faster" hotkey="f" onPress={() => runSpeed($, 'faster', options)} />
+        <Text dimColor>  </Text>
+        <Button plain key="slower" label="slower" hotkey="l" onPress={() => runSpeed($, 'slower', options)} />
       </Box>
     )
   })

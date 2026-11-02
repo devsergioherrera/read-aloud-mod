@@ -24,8 +24,9 @@ Off by default. Nothing leaves your machine.
 | Action | How |
 | --- | --- |
 | Turn on or off | `ctrl+x`, `Tab`, `m`, or `/read-aloud on \| off \| toggle` |
-| Read the last answer | `/read-aloud now` |
+| Read the last answer | `ctrl+x`, `Tab`, `r`, or `/read-aloud now` |
 | Stop talking | `ctrl+x`, `Tab`, `s`, or `/read-aloud stop` |
+| Faster / slower | `ctrl+x`, `Tab`, `f` / `l`, or `/read-aloud speed faster \| slower` |
 | See every option | Type `/read-aloud ` and keep typing: the options appear as you go. `/read-aloud help` lists them all |
 | Check the engine | `/read-aloud status` |
 
