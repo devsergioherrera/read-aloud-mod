@@ -24,8 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="assets/demo.mp4"><img src="assets/demo-poster.png" alt="Play the 15-second demo, with sound" width="720"></a><br>
-  <sub>▶ 15-second demo, sound on. Rendered with the mod's real English and Spanish voices, not a screen recording.</sub>
+  <a href="assets/demo.mp4"><img alt="Watch the 15-second demo, with sound" src="https://img.shields.io/badge/%E2%96%B6_Watch_the_demo-15_s_%C2%B7_with_sound-8B5CF6?style=for-the-badge&labelColor=0D0B14"></a>
 </p>
 
 <p align="center">
