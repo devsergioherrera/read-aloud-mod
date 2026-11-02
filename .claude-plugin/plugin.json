@@ -1,0 +1,48 @@
+{
+  "name": "read-aloud",
+  "version": "0.2.1",
+  "description": "Reads Claude's answers aloud with a local Kokoro voice. Off by default; toggle with ctrl+x tab m or /read-aloud.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "voice": {
+      "type": "string",
+      "title": "Voice",
+      "description": "Kokoro voice. Best male: am_michael, am_fenrir. Best female: af_heart, af_bella. /read-aloud voice male|female overrides it live.",
+      "default": "am_michael",
+      "options": [
+        "am_michael",
+        "am_fenrir",
+        "am_puck",
+        "af_heart",
+        "af_bella",
+        "af_nicole",
+        "bf_emma",
+        "bm_george"
+      ]
+    },
+    "speed": {
+      "type": "number",
+      "title": "Speed",
+      "description": "Speaking speed, 1.0 is normal. /read-aloud speed faster|slower overrides it live.",
+      "default": 1.3
+    },
+    "lang": {
+      "type": "string",
+      "title": "Language",
+      "description": "Kokoro language code (en-us, en-gb, es, fr-fr, ...). It must match the voice.",
+      "default": "en-us"
+    },
+    "maxChars": {
+      "type": "number",
+      "title": "Max characters",
+      "description": "Longer answers are cut at a sentence boundary before being spoken.",
+      "default": 1200
+    },
+    "spokenWords": {
+      "type": "number",
+      "title": "Spoken answer length",
+      "description": "While read-aloud is on, Claude is asked to keep answers under this many words.",
+      "default": 100
+    }
+  }
+}

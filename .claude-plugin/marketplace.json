@@ -1,0 +1,5 @@
+{
+  "name": "read-aloud",
+  "owner": { "name": "sergi" },
+  "plugins": [{ "name": "read-aloud", "source": "./" }]
+}
