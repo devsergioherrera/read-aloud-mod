@@ -27,6 +27,25 @@ type Options = { voice?: unknown; speed?: unknown; lang?: unknown; maxChars?: un
 
 let current: AsyncGenerator<unknown, { code: number | null }> | null = null
 
+const runtime = (globalThis as { process?: { platform?: string; env?: Record<string, string | undefined> } }).process
+const isWindows = runtime?.platform === 'win32'
+
+// On Windows the voice runs straight from its venv, so stopping kills the player itself.
+function windowsPython(): string {
+  const base = runtime?.env?.READ_ALOUD_HOME ?? `${runtime?.env?.LOCALAPPDATA}\\read-aloud`
+  return `${base}\\venv\\Scripts\\python.exe`
+}
+
+const powershell = (root: string, script: string, ...args: string[]) => [
+  'powershell',
+  '-NoProfile',
+  '-ExecutionPolicy',
+  'Bypass',
+  '-File',
+  `${root}/scripts/${script}`,
+  ...args,
+]
+
 function stop() {
   void current?.return?.(undefined as never)
   current = null
@@ -46,7 +65,7 @@ async function speak($: EngineInterface, answer: string, options: Options) {
   const speed = typeof savedSpeed === 'number' ? savedSpeed : Number(options.speed ?? 1.3)
 
   const stream = $.process.spawn({
-    argv: ['bash', `${$.plugin.root}/scripts/read-aloud.sh`],
+    argv: isWindows ? [windowsPython(), `${$.plugin.root}/scripts/speak.py`] : ['bash', `${$.plugin.root}/scripts/speak.sh`],
     input: text,
     env: {
       SPEAK_VOICE: voice,
@@ -193,14 +212,19 @@ export const register: Register = (on, options) => {
     }
 
     if (word === 'status') {
-      const check = await $.process.run(['bash', `${$.plugin.root}/scripts/read-aloud.sh`, '--check'])
+      const check = await $.process.run(
+        isWindows ? powershell($.plugin.root, 'check.ps1') : ['bash', `${$.plugin.root}/scripts/speak.sh`, '--check'],
+      )
       const { value = false } = await $.state.get(isOnRef)
       return { text: `Speak is ${value ? 'on' : 'off'}. ${check.stdout.trim()}` }
     }
 
     if (word === 'setup') {
       $.ui.toast('Installing the Kokoro voice, this takes a minute...')
-      const ran = await $.process.run(['bash', `${$.plugin.root}/scripts/setup.sh`], { timeoutMs: 600_000 })
+      const ran = await $.process.run(
+        isWindows ? powershell($.plugin.root, 'setup.ps1') : ['bash', `${$.plugin.root}/scripts/setup.sh`],
+        { timeoutMs: 600_000 },
+      )
       const tail = (ran.exitCode === 0 ? ran.stdout : ran.stderr || ran.stdout).trim().split('\n').slice(-3).join('\n')
       return { text: ran.exitCode === 0 ? tail : `Setup failed:\n${tail}` }
     }

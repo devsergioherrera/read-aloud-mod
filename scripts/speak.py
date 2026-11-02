@@ -1,18 +1,32 @@
 """Reads text from stdin and speaks it with Kokoro, streaming sentence by sentence."""
 
 import asyncio
+import io
 import os
+import queue
 import re
 import shutil
 import signal
 import subprocess
 import sys
+import threading
+import wave
 from pathlib import Path
 
 import numpy as np
-from kokoro_onnx import Kokoro
 
-DATA = Path(os.environ.get("READ_ALOUD_HOME") or Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache") / "read-aloud")
+IS_WINDOWS = sys.platform == "win32"
+
+
+def data_dir():
+    if os.environ.get("READ_ALOUD_HOME"):
+        return Path(os.environ["READ_ALOUD_HOME"])
+    if IS_WINDOWS:
+        return Path(os.environ.get("LOCALAPPDATA") or Path.home() / "AppData" / "Local") / "read-aloud"
+    return Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache") / "read-aloud"
+
+
+DATA = data_dir()
 
 RATE = 24000
 CUE = re.compile("(.*?)", re.S)
@@ -36,8 +50,40 @@ def stop(*_):
     os._exit(0)
 
 
+def wav_bytes(samples):
+    """Mono 16-bit WAV in memory, the format Windows can play without any extra package."""
+    pcm = (np.clip(samples, -1.0, 1.0) * 32767).astype("<i2")
+    buffer = io.BytesIO()
+    with wave.open(buffer, "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(RATE)
+        wav.writeframes(pcm.tobytes())
+    return buffer.getvalue()
+
+
+win_queue = queue.Queue()
+win_worker = None
+
+
+def win_play_loop():
+    import winsound
+
+    while True:
+        data = win_queue.get()
+        if data is None:
+            return
+        winsound.PlaySound(data, winsound.SND_MEMORY)
+
+
 def play(samples):
-    global player
+    global player, win_worker
+    if IS_WINDOWS:
+        if win_worker is None:
+            win_worker = threading.Thread(target=win_play_loop, daemon=True)
+            win_worker.start()
+        win_queue.put(wav_bytes(samples))
+        return
     if player is None:
         player = subprocess.Popen(player_argv(), stdin=subprocess.PIPE)
     player.stdin.write(samples.astype("<f4").tobytes())
@@ -77,11 +123,18 @@ async def main():
         else:
             await say(kokoro, part, voice, speed, lang)
 
-    if player:
+    if IS_WINDOWS and win_worker:
+        win_queue.put(None)
+        win_worker.join()
+    elif player:
         player.stdin.close()
         player.wait()
 
 
-signal.signal(signal.SIGTERM, stop)
-signal.signal(signal.SIGINT, stop)
-asyncio.run(main())
+if __name__ == "__main__":
+    from kokoro_onnx import Kokoro
+
+    sys.stdin.reconfigure(encoding="utf-8")
+    signal.signal(signal.SIGTERM, stop)
+    signal.signal(signal.SIGINT, stop)
+    asyncio.run(main())

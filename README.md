@@ -12,7 +12,12 @@ Off by default. Nothing leaves your machine.
 /read-aloud setup
 ```
 
-`/read-aloud setup` installs the voice once (about 120 MB). It needs `uv` and an audio player: `paplay`, `aplay`, or `ffplay`.
+`/read-aloud setup` installs the voice once (about 120 MB). It needs [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
+
+| Platform | Also needs | Status |
+| --- | --- | --- |
+| Ubuntu / Linux | `paplay`, `aplay`, or `ffplay` | Tested |
+| Windows 10 / 11 | PowerShell (built in). Install `uv` with `winget install astral-sh.uv` | Experimental, not tested on a real Windows machine yet |
 
 ## Use
 
