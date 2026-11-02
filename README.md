@@ -20,8 +20,7 @@
 <p align="center">
   <a href="#install">Install</a> &nbsp;·&nbsp;
   <a href="#use">Use</a> &nbsp;·&nbsp;
-  <a href="#how-it-works">How it works</a> &nbsp;·&nbsp;
-  <a href="#roadmap">Roadmap</a>
+  <a href="#how-it-works">How it works</a>
 </p>
 
 <p align="center">
@@ -111,15 +110,6 @@ flowchart LR
 ```
 
 A hook waits for each finished answer, turns the markdown into plain sentences, and streams it sentence by sentence to a local [Kokoro](https://github.com/thewh1teagle/kokoro-onnx) voice, so you hear the first words quickly.
-
-## Roadmap
-
-- [x] Ubuntu / Linux
-- [x] Hotkeys and a typeahead menu for every option
-- [x] Guided setup, English and Spanish voices
-- [ ] Windows, tested on a real machine
-- [ ] Hands-free control: stop and repeat from a headset button
-- [ ] More languages
 
 <p align="center">
   <img src="assets/wave.svg" alt="" width="200"><br>
