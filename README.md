@@ -57,6 +57,9 @@ Prefer no guide? `/read-aloud setup en`, `es` or `both` installs straight away.
 
 Press <kbd>ctrl</kbd> + <kbd>x</kbd>, then <kbd>Tab</kbd>, then one key. The row above the prompt shows them.
 
+> [!TIP]
+> The keys need the row to be visible. If you see `plugin panel hidden`, press <kbd>ctrl</kbd> + <kbd>x</kbd>, <kbd>ctrl</kbd> + <kbd>a</kbd> to show it first. After <kbd>ctrl</kbd> + <kbd>x</kbd>, <kbd>Tab</kbd> one button lights up. That means the row has focus.
+
 | Key | Does | Command |
 | :-: | :-- | :-- |
 | <kbd>m</kbd> | Switch reading on or off | `/read-aloud toggle` |
