@@ -24,6 +24,11 @@
 </p>
 
 <p align="center">
+  <a href="assets/demo.mp4"><img src="assets/demo-poster.png" alt="Play the 15-second demo, with sound" width="720"></a><br>
+  <sub>▶ 15-second demo, sound on. Rendered with the mod's real English and Spanish voices, not a screen recording.</sub>
+</p>
+
+<p align="center">
   <img src="assets/wave.svg" alt="" width="360">
 </p>
 
